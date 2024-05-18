@@ -40,7 +40,6 @@ public class AuthenticationService {
     public Usr authenticate(LoginUsrDto usrDto){
         UsernamePasswordAuthenticationToken authToken =
                 new UsernamePasswordAuthenticationToken(usrDto.getEmail(), usrDto.getPassword());
-        System.out.println("Before Auth token : "+authToken);
         try {
             Authentication authenticate = authenticationManager.authenticate(authToken);
             System.out.println("After Auth token : "+authenticate);
@@ -48,7 +47,7 @@ public class AuthenticationService {
                 return userRepository.findByEmail(usrDto.getEmail());
             }
         }catch (AuthenticationException authenticationException){
-            System.out.println("Exception "+authenticationException);
+            System.out.println("Exception "+authenticationException.getMessage());
         }
       return null;
     }

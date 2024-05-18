@@ -7,6 +7,7 @@ import com.auth.jwt.responses.LoginResponse;
 import com.auth.jwt.responses.ResponseMsg;
 import com.auth.jwt.services.AuthenticationService;
 import com.auth.jwt.services.JwtService;
+import com.auth.jwt.utils.Validation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -36,21 +37,24 @@ public class JwtAuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> register(@RequestBody RegisterUsrDto registerUserDto) {
-
-        return ResponseEntity.ok(authenticationService.signUp(registerUserDto));
+        String status = Validation.signupUserCheck(registerUserDto);
+        if(status.equals("success")){
+            return ResponseEntity.ok(authenticationService.signUp(registerUserDto));
+        }
+        return ResponseEntity.ok(new ResponseMsg(status,"400"));
     }
 
     @PostMapping("/login")
     public ResponseEntity<?> authenticate(@RequestBody LoginUsrDto loginUserDto) {
         Usr authenticatedUser = authenticationService.authenticate(loginUserDto);
         if(authenticatedUser!=null){
-            String jwtToken = jwtService.generateToken(authenticatedUser);
             LoginResponse loginResponse = new LoginResponse();
-            loginResponse.setToken(jwtToken);
+
+            loginResponse.setToken(jwtService.generateToken(authenticatedUser));
             loginResponse.setExpiresIn(jwtService.getExpirationTime());
             return ResponseEntity.ok(loginResponse);
         }else{
-           return ResponseEntity.ok(new ResponseMsg("Invalid userid or password","403"));
+           return ResponseEntity.ok(new ResponseMsg("Invalid userid or password","401"));
         }
 
     }
