@@ -3,7 +3,6 @@ package com.auth.jwt.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -39,7 +38,7 @@ public class SecurityAuthConfiguration {
     public CorsConfigurationSource corsConfigurationSource(){
 
         CorsConfiguration corsCfg = new CorsConfiguration();
-        corsCfg.setAllowedOrigins(List.of("http://localhost:8000"));
+        corsCfg.setAllowedOrigins(List.of("http://localhost:3006"));
         corsCfg.setAllowedMethods(List.of("POST","GET"));
         corsCfg.setAllowedHeaders(List.of("Authorization","Content-Type"));
 
