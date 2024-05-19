@@ -1,4 +1,4 @@
-package com.auth.jwt.config;
+package com.auth.jwt.authFilter;
 
 import com.auth.jwt.services.JwtService;
 import jakarta.servlet.FilterChain;

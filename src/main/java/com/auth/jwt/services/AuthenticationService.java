@@ -26,9 +26,10 @@ public class AuthenticationService {
         this.authenticationManager = authenticationManager;
     }
     public ResponseMsg signUp(RegisterUsrDto usrDto){
-        Usr usr = userRepository.findByEmail(usrDto.getEmail());
-        if(usr==null){
-            usr.setName(usrDto.getFullName());
+        Usr dbUsr = userRepository.findByEmail(usrDto.getEmail());
+        if(dbUsr==null){
+            Usr usr = new Usr();
+            usr.setFullName(usrDto.getFullName());
             usr.setEmail(usrDto.getEmail());
             usr.setPassword(passwordEncoder.encode(usrDto.getPassword()));
             userRepository.save(usr);
@@ -42,7 +43,6 @@ public class AuthenticationService {
                 new UsernamePasswordAuthenticationToken(usrDto.getEmail(), usrDto.getPassword());
         try {
             Authentication authenticate = authenticationManager.authenticate(authToken);
-            System.out.println("After Auth token : "+authenticate);
             if(authenticate.isAuthenticated()){
                 return userRepository.findByEmail(usrDto.getEmail());
             }

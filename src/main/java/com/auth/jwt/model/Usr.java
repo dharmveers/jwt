@@ -1,5 +1,6 @@
 package com.auth.jwt.model;
 
+import com.auth.jwt.dtos.RegisterUsrDto;
 import jakarta.persistence.*;
 import org.antlr.v4.runtime.misc.NotNull;
 import org.springframework.security.core.GrantedAuthority;
@@ -13,7 +14,7 @@ public class Usr implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name;
+    private String fullName;
     @Column(nullable = false,unique = true)
     private String email;
     private String password;
@@ -27,12 +28,12 @@ public class Usr implements UserDetails {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getEmail() {
