@@ -1,6 +1,5 @@
 package com.auth.jwt.config;
 
-import com.auth.jwt.model.Usr;
 import com.auth.jwt.repositories.UsrRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

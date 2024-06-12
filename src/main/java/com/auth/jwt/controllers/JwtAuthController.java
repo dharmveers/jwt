@@ -2,7 +2,7 @@ package com.auth.jwt.controllers;
 
 import com.auth.jwt.dtos.LoginUsrDto;
 import com.auth.jwt.dtos.RegisterUsrDto;
-import com.auth.jwt.model.Usr;
+import com.auth.jwt.model.User;
 import com.auth.jwt.responses.LoginResponse;
 import com.auth.jwt.responses.ResponseMsg;
 import com.auth.jwt.services.AuthenticationService;
@@ -11,8 +11,6 @@ import com.auth.jwt.utils.Validation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -46,7 +44,7 @@ public class JwtAuthController {
 
     @PostMapping("/login")
     public ResponseEntity<?> authenticate(@RequestBody LoginUsrDto loginUserDto) {
-        Usr authenticatedUser = authenticationService.authenticate(loginUserDto);
+        User authenticatedUser = authenticationService.authenticate(loginUserDto);
         if(authenticatedUser!=null){
             LoginResponse loginResponse = new LoginResponse();
 
