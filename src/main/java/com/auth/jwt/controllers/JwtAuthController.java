@@ -28,7 +28,7 @@ public class JwtAuthController {
         this.jwtService = jwtService;
         this.authenticationService = authenticationService;
     }
-    @GetMapping("/")
+    @GetMapping("/hello")
     public String getHello(){
         return "Hello jwtApplication";
     }
@@ -44,16 +44,25 @@ public class JwtAuthController {
 
     @PostMapping("/login")
     public ResponseEntity<?> authenticate(@RequestBody LoginUsrDto loginUserDto) {
+<<<<<<< HEAD
         User authenticatedUser = authenticationService.authenticate(loginUserDto);
         if(authenticatedUser!=null){
             LoginResponse loginResponse = new LoginResponse();
+=======
+        String status = Validation.loginCheck(loginUserDto);
+        if (status.equals("success")){
+            Usr authenticatedUser = authenticationService.authenticate(loginUserDto);
+            if(authenticatedUser!=null){
+                LoginResponse loginResponse = new LoginResponse();
+>>>>>>> d00a4f2a1a20ebfe1550630bf5efdd29ab35da72
 
-            loginResponse.setToken(jwtService.generateToken(authenticatedUser));
-            loginResponse.setExpiresIn(jwtService.getExpirationTime());
-            return ResponseEntity.ok(loginResponse);
-        }else{
-           return ResponseEntity.ok(new ResponseMsg("Invalid userid or password","401"));
+                loginResponse.setToken(jwtService.generateToken(authenticatedUser));
+                loginResponse.setExpiresIn(jwtService.getExpirationTime());
+                return ResponseEntity.ok(loginResponse);
+            }else{
+                return ResponseEntity.ok(new ResponseMsg("Invalid userid or password","401"));
+            }
         }
-
+        return ResponseEntity.ok(new ResponseMsg(status,"403"));
     }
 }
