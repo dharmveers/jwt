@@ -1,6 +1,5 @@
 package com.auth.jwt.dtos;
 
-import com.auth.jwt.model.Usr;
 
 public class RegisterUsrDto {
     private String email;

@@ -1,15 +1,10 @@
 package com.auth.jwt.config;
 
-<<<<<<< HEAD
 import com.auth.jwt.controllers.JwtAuthenticationEntryPoint;
 import com.auth.jwt.filter.JwtAuthenticationFilter;
-=======
-import com.auth.jwt.authFilter.JwtAuthenticationFilter;
->>>>>>> d00a4f2a1a20ebfe1550630bf5efdd29ab35da72
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;

@@ -1,9 +1,4 @@
-<<<<<<<< HEAD:src/main/java/com/auth/jwt/filter/JwtAuthenticationFilter.java
 package com.auth.jwt.filter;
-========
-package com.auth.jwt.authFilter;
->>>>>>>> d00a4f2a1a20ebfe1550630bf5efdd29ab35da72:src/main/java/com/auth/jwt/authFilter/JwtAuthenticationFilter.java
-
 import com.auth.jwt.services.JwtService;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.MalformedJwtException;

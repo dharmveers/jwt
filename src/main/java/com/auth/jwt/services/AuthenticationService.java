@@ -26,24 +26,14 @@ public class AuthenticationService {
         this.authenticationManager = authenticationManager;
     }
     public ResponseMsg signUp(RegisterUsrDto usrDto){
-<<<<<<< HEAD
         User dbUser = userRepository.findByEmail(usrDto.getEmail());
         System.out.println("Full Name :"+usrDto.getFullName());
         if(dbUser==null){
             User user = new User();
-            user.setName(usrDto.getFullName());
+            user.setFullName(usrDto.getFullName());
             user.setEmail(usrDto.getEmail());
             user.setPassword(passwordEncoder.encode(usrDto.getPassword()));
             userRepository.save(user);
-=======
-        Usr dbUsr = userRepository.findByEmail(usrDto.getEmail());
-        if(dbUsr==null){
-            Usr usr = new Usr();
-            usr.setFullName(usrDto.getFullName());
-            usr.setEmail(usrDto.getEmail());
-            usr.setPassword(passwordEncoder.encode(usrDto.getPassword()));
-            userRepository.save(usr);
->>>>>>> d00a4f2a1a20ebfe1550630bf5efdd29ab35da72
             return new ResponseMsg("Register Successfully","200");
         }
         return new ResponseMsg("User Already Exists","403");
